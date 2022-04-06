@@ -4,7 +4,6 @@ import 'models.dart';
 class Cart extends Equatable {
   final List<Product> products;
 
-
   const Cart({this.products = const <Product>[]});
 
   // รวมค่า subtotal
@@ -49,4 +48,19 @@ class Cart extends Equatable {
 
   @override
   List<Object?> get props => [products];
+
+  //Map สินค้า เพื่อเพิ่มลดรายการสั่ง
+  Map productQuantity(products) {
+    var quantity = {};
+
+    products.forEach((productKey) {
+      if (!quantity.containsKey(productKey)) {
+        quantity[productKey] = 1;
+      } else {
+        quantity[productKey] += 1;
+      }
+    });
+
+    return quantity;
+  }
 }

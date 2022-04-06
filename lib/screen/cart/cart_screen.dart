@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/cart/cart_bloc.dart';
-import '../../models/models.dart';
 
 class CartPage extends StatelessWidget {
   CartPage({Key? key}) : super(key: key);
@@ -81,21 +80,25 @@ class CartPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           SizedBox(
                             height: 400,
                             child: ListView.builder(
-                                itemCount: state.cart.products.length,
+                                itemCount: state.cart.productQuantity(state.cart.products).keys.length,
                                 itemBuilder: (context, index) {
                                   return CartProductCard(
-                                      product: state.cart.products[index]);
+                                      product: state.cart.productQuantity(state.cart.products).keys.elementAt(index),
+                                      countitem: 
+                                        state.cart.productQuantity(state.cart.products).values.elementAt(index)
+                                      ,
+                                    );
                                 }),
                           )
                         ],
                       ),
                       Column(
                         children: [
-                          Divider(thickness: 2),
+                          const Divider(thickness: 2),
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 40, vertical: 10),
@@ -117,7 +120,7 @@ class CartPage extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -147,10 +150,10 @@ class CartPage extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.all(5.0),
+                                margin: const EdgeInsets.all(5.0),
                                 width: MediaQuery.of(context).size.width,
                                 height: 50,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: Colors.black,
                                 ),
                                 child: Padding(

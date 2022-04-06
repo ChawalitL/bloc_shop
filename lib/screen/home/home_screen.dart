@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
-  static const String routeName = '/';
+  static const String routeName = '/home';
 
   static Route route() {
     return MaterialPageRoute(

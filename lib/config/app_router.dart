@@ -6,11 +6,11 @@ class AppRouter {
   static Route onGenerateRoute(RouteSettings settings) {
     print(settings.name);
     switch (settings.name) {
-      case '/home':
+      case '/':
         return MyHomePage.route();
 
-      case MyHomePage.routeName:
-        return MyHomePage.route();
+      case SplashScreen.routeName:
+        return SplashScreen.route();
 
       case CartPage.routeName:
         return CartPage.route();

@@ -6,9 +6,12 @@ import '../models/models.dart';
 
 class CartProductCard extends StatelessWidget {
   final Product product;
+  final int countitem;
+
   CartProductCard({
     Key? key,
     required this.product,
+    required this.countitem,
   }) : super(key: key);
 
   @override
@@ -52,8 +55,8 @@ class CartProductCard extends StatelessWidget {
                     icon: Icon(Icons.remove_circle),
                   ),
                   Text(
-                    '1',
-                    style: Theme.of(context).textTheme.headline6,
+                    countitem.toString(),
+                    style: Theme.of(context).textTheme.headline4,
                   ),
                   IconButton(
                     onPressed: () {

@@ -97,9 +97,7 @@ class ProductCard extends StatelessWidget {
                               onPressed: () {
                                 context
                                     .read<CartBloc>()
-                                    .add(CartProductAdd(products));
-
-                                print('ADD Pronduct');
+                                    .add(CartProductAdd(products));                  
                               },
                               icon:
                                   Icon(Icons.add_circle, color: Colors.white)),
