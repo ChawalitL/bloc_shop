@@ -26,9 +26,9 @@ class CustomNavigationBar extends StatelessWidget {
                 icon: Icon(Icons.shopping_cart, color: Colors.white)),
             IconButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/user');
+                  Navigator.pushNamed(context, '/checkout');
                 },
-                icon: Icon(Icons.person, color: Colors.white)),
+                icon: Icon(Icons.wifi_protected_setup, color: Colors.white)),
           ],
         ),
       ),

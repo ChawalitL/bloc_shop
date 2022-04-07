@@ -101,7 +101,7 @@ class ProductPage extends StatelessWidget {
                   color: Colors.black.withAlpha(50),
                 ),
                 Container(
-                  margin: EdgeInsets.all(5),
+                  margin: const EdgeInsets.all(5),
                   width: MediaQuery.of(context).size.width,
                   height: 50,
                   color: Colors.black,

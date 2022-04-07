@@ -4,6 +4,10 @@ import 'package:bloc_provider/models/models.dart';
 import 'package:bloc_provider/widgets/widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../bloc/category/category_bloc.dart';
+import '../../bloc/product/product_bloc.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -24,26 +28,66 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              child: CarouselSlider(
-                  options: CarouselOptions(
-                      autoPlay: true,
-                      aspectRatio: 1.5,
-                      viewportFraction: 0.9,
-                      enlargeCenterPage: true,
-                      enlargeStrategy: CenterPageEnlargeStrategy.height),
-                  items: Category.categories
-                      .map((e) => HeroCarouselCard(category: e,product: null,))
-                      .toList()),
+              child: BlocBuilder<CategoryBloc, CategoryState>(
+                builder: (context, state) {
+                  if (state is CategoryLoading) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (state is CategoryLoaded) {
+                    return CarouselSlider(
+                        options: CarouselOptions(
+                            autoPlay: true,
+                            aspectRatio: 1.5,
+                            viewportFraction: 0.9,
+                            enlargeCenterPage: true,
+                            enlargeStrategy: CenterPageEnlargeStrategy.height),
+                        items: state.categories
+                            .map((e) => HeroCarouselCard(
+                                  category: e,
+                                  product: null,
+                                ))
+                            .toList());
+                  } else {
+                    return Center(child: Text('Something is wrong'));
+                  }
+                },
+              ),
             ),
             SectionTitle(title: 'RECOMMENDED'),
-            ProductCarousel(
-                products:
-                    Product.products.where((i) => i.isRecommended).toList()
-            ),
+            BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
+              if (state is ProductLoading) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              if (state is ProductLoaded) {
+                return ProductCarousel(
+                    products: state.products
+                        .where((i) => i.isRecommended)
+                        .toList());
+              } else {
+                return Text('Something wrong');
+              }
+            }),
             SectionTitle(title: 'MOSTPOPULAR'),
-            ProductCarousel(
-                products:
-                    Product.products.where((i) => i.isPopular).toList()
+            BlocBuilder<ProductBloc, ProductState>(
+              builder: (context, state) {
+                if (state is ProductLoading) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              if (state is ProductLoaded) {
+                return ProductCarousel(
+                    products: state.products
+                        .where((i) => i.isPopular)
+                        .toList());
+              } else {
+                return Text('Something wrong');
+                }
+              },
             ),
           ],
         ),

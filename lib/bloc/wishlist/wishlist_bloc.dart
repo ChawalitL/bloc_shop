@@ -48,7 +48,7 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
         print('On_Delete');
         emit(WishlistLoaded(
             wishlist: Wishlist(
-          products: List.from(state.wishlist.products)..remove(event.products),
+          products: List.from(state.wishlist.products)..remove(event.product),
         )));
         print('Delete Success');
       } catch (e) {

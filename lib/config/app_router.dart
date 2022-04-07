@@ -24,6 +24,9 @@ class AppRouter {
       case WishlistPage.routeName:
         return WishlistPage.route();
 
+      case CheckoutPage.routeName:
+        return CheckoutPage.route();
+
       default:
         return _errorRoute();
     }

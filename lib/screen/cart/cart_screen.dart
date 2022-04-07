@@ -28,7 +28,9 @@ class CartPage extends StatelessWidget {
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.white),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/checkout');
+                  },
                   child: Text('GO TO CHECKOUT',
                       style: Theme.of(context).textTheme.headline3),
                 )
@@ -49,146 +51,69 @@ class CartPage extends StatelessWidget {
                   horizontal: 20,
                   vertical: 10,
                 ),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                state.cart.freeDeliveryString,
-                                style: Theme.of(context).textTheme.headline5,
-                              ),
-                              ElevatedButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(context, '/');
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  primary: Colors.black,
-                                ),
-                                child: Text(
-                                  'Add More Items',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline5!
-                                      .copyWith(
-                                        color: Colors.white,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 10),
-                          SizedBox(
-                            height: 400,
-                            child: ListView.builder(
-                                itemCount: state.cart.productQuantity(state.cart.products).keys.length,
-                                itemBuilder: (context, index) {
-                                  return CartProductCard(
-                                      product: state.cart.productQuantity(state.cart.products).keys.elementAt(index),
-                                      countitem: 
-                                        state.cart.productQuantity(state.cart.products).values.elementAt(index)
-                                      ,
-                                    );
-                                }),
-                          )
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          const Divider(thickness: 2),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 40, vertical: 10),
-                            child: Column(
+                child: SingleChildScrollView(
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'SUBTOTAL',
-                                      style:
-                                          Theme.of(context).textTheme.headline5,
-                                    ),
-                                    Text(
-                                      '${state.cart.subtotalString} Bath',
-                                      style:
-                                          Theme.of(context).textTheme.headline5,
-                                    ),
-                                  ],
+                                Expanded(
+                                  child: Text(
+                                    state.cart.freeDeliveryString,
+                                    style: Theme.of(context).textTheme.headline5,
+                                  ),
                                 ),
-                                const SizedBox(height: 10),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'DELIVERY FEE',
-                                      style:
-                                          Theme.of(context).textTheme.headline5,
-                                    ),
-                                    Text(
-                                      '${state.cart.deliveryFeeString} Bath',
-                                      style:
-                                          Theme.of(context).textTheme.headline5,
-                                    ),
-                                  ],
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/');
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.black,
+                                  ),
+                                  child: Text(
+                                    'Add More Items',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline5!
+                                        .copyWith(
+                                          color: Colors.white,
+                                        ),
+                                  ),
                                 ),
                               ],
                             ),
-                          ),
-                          Stack(
-                            children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 60,
-                                decoration: BoxDecoration(
-                                  color: Colors.black.withAlpha(50),
-                                ),
-                              ),
-                              Container(
-                                margin: const EdgeInsets.all(5.0),
-                                width: MediaQuery.of(context).size.width,
-                                height: 50,
-                                decoration: const BoxDecoration(
-                                  color: Colors.black,
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 30),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'TOTAL',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline5!
-                                            .copyWith(color: Colors.white),
-                                      ),
-                                      Text(
-                                        '${state.cart.totalString} Bath',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline5!
-                                            .copyWith(color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ]),
+                            const SizedBox(height: 10),
+                            SizedBox(
+                              height: 400,
+                              child: ListView.builder(
+                                  itemCount: state.cart
+                                      .productQuantity(state.cart.products)
+                                      .keys
+                                      .length,
+                                  itemBuilder: (context, index) {
+                                    return CartProductCard(
+                                      product: state.cart
+                                          .productQuantity(state.cart.products)
+                                          .keys
+                                          .elementAt(index),
+                                      countitem: state.cart
+                                          .productQuantity(state.cart.products)
+                                          .values
+                                          .elementAt(index),
+                                    );
+                                  }),
+                            )
+                          ],
+                        ),
+                        OrderSummary(),
+                      ]),
+                ),
               );
             } else {
-              return const Text('Something went Wrong');
+              return const CircularProgressIndicator();
             }
           },
         ));
