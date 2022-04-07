@@ -1,3 +1,4 @@
+import 'package:bloc_provider/models/category_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
@@ -24,7 +25,7 @@ class Product extends Equatable {
       [name, category, imageUrl, price, isRecommended, isPopular, des];
 
   static Product fromsnapshot(DocumentSnapshot snapshot) {
-    Product product = Product(
+    Product products = Product(
       name: snapshot['name'],
       category: snapshot['category'],
       imageUrl: snapshot['imageUrl'],
@@ -34,10 +35,10 @@ class Product extends Equatable {
       des: snapshot['des'],
     );
 
-    return product;
+    return products;
   }
 
-  static List<Product> products = [
+  static List<Product> products = const [
     Product(
         name: 'SoftDrink #1',
         category: 'SoftDrink',
@@ -117,5 +118,75 @@ class Product extends Equatable {
         isRecommended: false,
         isPopular: true,
         des: "information Water #3"),
+    Product(
+      name: 'Smoothies #4',
+      category: 'Smoothies',
+      imageUrl:
+          'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/make-ahead-smoothies-1641852307.jpg?crop=0.544xw:0.817xh;0.162xw,0.127xh&resize=980:*',
+      price: 90,
+      isRecommended: false,
+      isPopular: false,
+      des: "information SoftDrink #4",
+    ),
+    Product(
+      name: 'Smoothies #5',
+      category: 'Smoothies',
+      imageUrl:
+          'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/summer-smoothies-1641853036.jpg?crop=0.669xw:1.00xh;0.140xw,0&resize=980:*',
+      price: 60,
+      isRecommended: false,
+      isPopular: false,
+      des: "information SoftDrink #5",
+    ),
+    Product(
+      name: 'Smoothies #6',
+      category: 'Smoothies',
+      imageUrl:
+          'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pineapple-cucumber-smoothie-1641852612.jpg?crop=0.483xw:0.467xh;0.0842xw,0.362xh&resize=980:*',
+      price: 100,
+      isRecommended: false,
+      isPopular: false,
+      des: "information SoftDrink #6",
+    ),
+    Product(
+      name: 'Smoothies #7',
+      category: 'Smoothies',
+      imageUrl:
+          'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/coconut-raspberry-smoothie-1641852442.jpg?crop=0.665xw:1.00xh;0.199xw,0&resize=980:*',
+      price: 90,
+      isRecommended: false,
+      isPopular: false,
+      des: "information SoftDrink #7",
+    ),
+    Product(
+      name: 'SoftDrink #4',
+      category: 'SoftDrink',
+      imageUrl:
+          'https://ocs-k8s-prod.s3.ap-southeast-1.amazonaws.com/PRODUCT_1642565569625.jpeg',
+      price: 120,
+      isRecommended: false,
+      isPopular: false,
+      des: "information SoftDrink #4",
+    ),
+    Product(
+      name: 'SoftDrink #5',
+      category: 'SoftDrink',
+      imageUrl:
+          'https://ocs-k8s-prod.s3.ap-southeast-1.amazonaws.com/PRODUCT_1642668555971.jpeg',
+      price: 150,
+      isRecommended: false,
+      isPopular: false,
+      des: "information SoftDrink #5",
+    ),
+    Product(
+      name: 'SoftDrink #6',
+      category: 'SoftDrink',
+      imageUrl:
+          'https://ocs-k8s-prod.s3.ap-southeast-1.amazonaws.com/PRODUCT_1642669184445.jpeg',
+      price: 140,
+      isRecommended: false,
+      isPopular: false,
+      des: "information SoftDrink #6",
+    ),
   ];
 }

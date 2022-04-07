@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../models/models.dart';
 
 class CatalogPage extends StatelessWidget {
-  CatalogPage({Key? key,required this.category}) : super(key: key);
+  CatalogPage({Key? key, required this.category}) : super(key: key);
 
   final category;
 
@@ -22,6 +22,7 @@ class CatalogPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Product> catagoryProducts =
         Product.products.where((i) => i.category == category.name).toList();
+
     return Scaffold(
       appBar: CustomAppbar(title: category.name),
       bottomNavigationBar: CustomNavigationBar(),

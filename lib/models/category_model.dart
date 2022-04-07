@@ -13,7 +13,7 @@ class Category extends Equatable {
   @override
   List<Object?> get props => [name, imageUrl];
 
-  static Category fromsnapshop(DocumentSnapshot snapshot) {
+  static Category fromsnapshot(DocumentSnapshot snapshot) {
     Category category = Category(
       name: snapshot['name'],
       imageUrl: snapshot['imageUrl'],

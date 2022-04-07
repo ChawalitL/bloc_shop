@@ -11,7 +11,7 @@ class CategoryRes extends BaseCatagoryRespon {
   @override
   Stream<List<Category>> getAllcategories() {
     return _firebaseFirestore.collection('catagories').snapshots().map((event) {
-      return event.docs.map((e) => Category.fromsnapshop(e)).toList();
+      return event.docs.map((e) => Category.fromsnapshot(e)).toList();
     });
   }
 }
