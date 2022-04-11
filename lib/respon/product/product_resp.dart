@@ -1,3 +1,4 @@
+import 'package:bloc_provider/models/category_model.dart';
 import 'package:bloc_provider/models/product_model.dart';
 import 'package:bloc_provider/respon/product/base_product.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,7 +12,8 @@ class ProductRes extends BaseProductRespon {
   @override
   Stream<List<Product>> getAllproduct() {
     return _firebaseFirestore.collection('products').snapshots().map((event) {
-      return event.docs.map((e) => Product.fromsnapshot(e)).toList();
+      return event.docs.map((e) => Product.fromSnapshot(e)).toList();
     });
   }
+
 }

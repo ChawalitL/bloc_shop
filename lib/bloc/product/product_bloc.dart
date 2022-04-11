@@ -13,17 +13,17 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   ProductBloc({required ProductRes productRes})
       : _productRes = productRes,
         super(ProductLoading()) {
-    on<LoadProducts>(_mapLoadcategories);
-    on<UploadProducts>(_mapUploadcategories);
+    on<LoadProducts>(_mapLoadProducts);
+    on<UploadProducts>(_mapUploadProducts);
   }
 
-  void _mapLoadcategories(event, emit) {
+  void _mapLoadProducts(event, emit) {
     _productRes
         .getAllproduct()
         .listen((products) => add(UploadProducts(products)));
   }
 
-  void _mapUploadcategories(event, emit) {
+  void _mapUploadProducts(event, emit) {
     emit(ProductLoaded(products: event.products));
   }
 }
