@@ -24,7 +24,7 @@ Future<void> main() async {
     await Firebase.initializeApp();
 
     runApp(MyApp());
-  }, blocObserver: MyBlocObserver());
+  });//, blocObserver: MyBlocObserver());
 }
 
 class MyApp extends StatelessWidget {

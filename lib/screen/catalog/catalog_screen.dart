@@ -34,7 +34,7 @@ class CatalogPage extends StatelessWidget {
       body: BlocBuilder<ProductBloc, ProductState>(
         builder: (context, state) {
           if (state is ProductLoading) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
