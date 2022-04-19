@@ -2,9 +2,9 @@ import 'package:bloc_provider/models/models.dart';
 import 'package:equatable/equatable.dart';
 
 class Wishlist extends Equatable {
-  final List<Product> products;
+  final Set<Product> products;
 
-  const Wishlist({this.products = const <Product>[]});
+  const Wishlist({this.products = const <Product>{}});
 
   @override
   List<Object?> get props => [products];

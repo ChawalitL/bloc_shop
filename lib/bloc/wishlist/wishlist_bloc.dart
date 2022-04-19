@@ -27,10 +27,10 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
     final state = this.state;
     if (state is WishlistLoaded) {
       try {
-          emit(WishlistLoaded(
-              wishlist: Wishlist(
-                  products: List.from(state.wishlist.products)
-                    ..add(event.product))));
+        emit(WishlistLoaded(
+            wishlist: Wishlist(
+                products: Set.from(state.wishlist.products)
+                  ..add(event.product))));
       } catch (e) {
         emit(WishlistError());
       }
@@ -41,10 +41,13 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
     final state = this.state;
     if (state is WishlistLoaded) {
       try {
-        emit(WishlistLoaded(
+        emit(
+          WishlistLoaded(
             wishlist: Wishlist(
-          products: List.from(state.wishlist.products)..remove(event.product),
-        )));
+              products: Set.from(state.wishlist.products)..remove(event.product),
+            ),
+          ),
+        );
       } catch (e) {
         emit(WishlistError());
       }
