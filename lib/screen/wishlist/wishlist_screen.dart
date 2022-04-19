@@ -23,7 +23,6 @@ class WishlistPage extends StatelessWidget {
       bottomNavigationBar: const CustomNavigationBar(),
       body: BlocBuilder<WishlistBloc, WishlistState>(
         builder: (context, state) {
-          print(state);
           if (state is WishlistLoading) {
             return const Center(child: CircularProgressIndicator()
                 /*Text(
@@ -44,18 +43,24 @@ class WishlistPage extends StatelessWidget {
                   crossAxisCount: 1,
                   childAspectRatio: 2.4,
                 ),
-                itemCount: state.wishlist.products.length,
+                itemCount: state.wishlist
+                    .productWishlist(state.wishlist.products)
+                    .keys
+                    .length,
                 itemBuilder: (BuildContext context, int index) {
                   return Center(
                       child: ProductCard(
-                    products: state.wishlist.products[index],
+                    products: state.wishlist
+                        .productWishlist(state.wishlist.products)
+                        .keys
+                        .elementAt(index),
                     widthFactor: 1.1,
                     leftPosition: 100,
                     isWishlist: true,
                   ));
                 });
           } else {
-            return Center(
+            return const Center(
               child: Text(
                 'Error',
                 style: TextStyle(

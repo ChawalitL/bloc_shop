@@ -108,7 +108,7 @@ class CartPage extends StatelessWidget {
                             )
                           ],
                         ),
-                        OrderSummary(),
+                        const OrderSummary(),
                       ]),
                 ),
               );

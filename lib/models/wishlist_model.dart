@@ -8,4 +8,16 @@ class Wishlist extends Equatable {
 
   @override
   List<Object?> get props => [products];
+
+  Map productWishlist(products) {
+    var productWishlish = {};
+
+    products.forEach((productKey) {
+      if (!productWishlish.containsKey(productKey)) {
+        productWishlish[productKey] = 1;
+      } else {}
+    });
+
+    return productWishlish;
+  }
 }
